@@ -6,18 +6,31 @@
 			<a class="navbar-brand" href="#"><i class="fas fa-car"></i> Consecionario Nazarik</a>
 			<div class="collapse navbar-collapse">
 				<div class="navbar-nav">
-					<a class="nav-item nav-link" href="#">Inicio</a>
-					<a class="nav-item nav-link" href="#">Ingresar automovil</a>
+					<a class="nav-item nav-link" [routerLink]="['home']">Inicio</a>
+					<a class="nav-item nav-link" href="#" *ngIf="identity">Ingresar automovil</a>
 				</div>
 			</div>
 	
-			<div class="collapse navbar-collapse">
+			<div class="collapse navbar-collapse" *ngIf="!identity">
 				<div class="nav navbar-nav ml-auto">
 					<a [routerLink]="['login']" class="nav-item nav-link">Login</a>
 					<span class="navbar-text">
 					<i class="fas fa-grip-lines-vertical"></i>
 					</span>
 					<a [routerLink]="['register']" class="nav-item nav-link">Registro</a>
+				</div>
+			</div>
+
+			<div class="collapse navbar-collapse" *ngIf="identity">
+				<div class="nav navbar-nav ml-auto">
+					<span class="nav-item nav-link">{{"Bienvenido(a)" + ' ' + identity.name}}</span>
+					<span class="navbar-text">
+					<i class="fas fa-grip-lines-vertical"></i>
+					</span>
+					<a [routerLink]="['logout', 1]" class="nav-item nav-link">
+						<i class="fas fa-sign-out-alt"></i>
+						Salir
+					</a>
 				</div>
 			</div>
 
