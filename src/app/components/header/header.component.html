@@ -3,14 +3,17 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
 			
+			<!-- Primer segmento -->
 			<a class="navbar-brand" href="#"><i class="fas fa-car"></i> Consecionario Nazarik</a>
 			<div class="collapse navbar-collapse">
 				<div class="navbar-nav">
 					<a class="nav-item nav-link" [routerLink]="['home']">Inicio</a>
-					<a class="nav-item nav-link" href="#" *ngIf="identity">Ingresar automovil</a>
+					<a class="nav-item nav-link" [routerLink]="['carnew']" *ngIf="identity">Ingresar automovil</a>
+					<a class="nav-item nav-link" [routerLink]="['cardetail']" *ngIf="identity">Listar automoviles</a>
 				</div>
 			</div>
 	
+			<!-- Segmento sin identificar -->
 			<div class="collapse navbar-collapse" *ngIf="!identity">
 				<div class="nav navbar-nav ml-auto">
 					<a [routerLink]="['login']" class="nav-item nav-link">Login</a>
@@ -21,6 +24,7 @@
 				</div>
 			</div>
 
+			<!-- Segmento identificado -->
 			<div class="collapse navbar-collapse" *ngIf="identity">
 				<div class="nav navbar-nav ml-auto">
 					<span class="nav-item nav-link">{{"Bienvenido(a)" + ' ' + identity.name}}</span>

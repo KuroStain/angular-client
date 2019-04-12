@@ -1,0 +1,59 @@
+<h2 class="text-center pt-3">{{page_title}}</h2>
+
+<div *ngIf="!status_car == 'success'" class="alert alert-danger">
+  Ocurrio un error en el registro.
+  Error: {{status_msg}}
+</div>
+
+<div *ngIf="status_car == 'success'" class="alert alert-success">
+  Registro almacenado correctamente
+</div>
+
+<div class="col-md-12 abs-center mt-3">
+  <form #carNew="ngForm" (ngSubmit)="onSubmit(carNew)" class="col-md-7">
+
+    <!-- Marca -->
+    <div class="row form-group">
+      <div class="col col-md-2">
+        <label for="title" class="form-control-plaintext">Marca</label>
+      </div>
+      <div class="col">
+        <input type="text" name="title" #title="ngModel" [(ngModel)]="car.title" class="form-control" required />
+        <span *ngIf="!title.valid && title.touched" class="text-muted">El campo marca es obligatorio</span>
+      </div>
+    </div>
+
+    <!-- Modelo -->
+    <div class="row form-group">
+        <div class="col col-md-2">
+          <label for="description" class="form-control-plaintext">Modelo</label>
+        </div>
+        <div class="col">
+          <input type="text" name="description" #description="ngModel" [(ngModel)]="car.description" class="form-control" required />
+          <span *ngIf="!description.valid && description.touched" class="text-muted">El campo modelo es obligatorio</span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+
+      <!-- Precio -->
+      <div class="col form-group">
+        <label for="price" class="form-control-plaintext">Precio</label>
+        <input type="text" name="price" #price="ngModel" [(ngModel)]="car.price" class="form-control" style="text-align: right" required />
+        <span *ngIf="price.touched && !price.valid" class="text-muted">El campo precio es obligatorio</span>
+      </div>
+  
+      <!-- Estado -->
+      <div class="col form-group">
+        <label for="status" class="form-control-plaintext">Estado</label>
+        <select class="form-control" name="status" #status="ngModel" [(ngModel)]="car.status" required>
+            <option selected="selected" value="true">En venta</option>
+            <option value="false">No disponible</option>
+        </select>
+      </div>
+      
+    </div>
+    <input type="submit" value="Guardar" [disabled]="!carNew.form.valid" class="btn btn-success" />
+    <button (click)="btn_redirect()" class="btn btn-info ml-1">Volver</button>
+  </form>
+</div>
