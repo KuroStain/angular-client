@@ -1,3 +1,40 @@
-<p>
-  car-detail works!
-</p>
+<div *ngIf="!cars" class="d-flex justify-content-center abs-center">
+    <!-- <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div> -->
+    <video autoplay loop muted playsinline>
+        <source src="../../../assets/img/1519592507_Tohru-Dance.mp4" type="video/webm">
+    </video>
+  </div>
+
+<div class="col-md-12 mt-3" *ngIf="cars">
+
+  <table class="table table-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Estado</th>
+        <th scope="col"></th>
+      </tr>
+
+    </thead>
+    <tr *ngFor="let car of cars">
+      <td>{{car.title}}</td>
+      <td>{{car.description}}</td>
+      <td>{{car.price}}</td>
+      <td>
+        <div *ngIf="car.status == 'true'">En Venta</div>
+        <div *ngIf="car.status == 'false'">No disponible</div>
+      </td>
+      <td class="col-md-2">
+          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
+              <button type="button" class="btn btn-light"><i class="fas fa-eraser"></i></button>
+            </div>
+      </td>
+    </tr>
+  </table>
+
+</div>
