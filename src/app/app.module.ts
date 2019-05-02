@@ -18,6 +18,8 @@ const appRoutes: Routes = [
     component : RegisterComponent },
   { path      : 'home',
     component : HomeComponent},
+  {path       : 'logout/:sure',
+    component : LoginComponent},
   { path      : '', 
     component : HomeComponent},
   { path      : '**', 
